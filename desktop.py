@@ -49,13 +49,11 @@ class Adaptor(dbus.service.Object):
     @dbus.service.method('org.subwaydesktop.desktop',
                          in_signature='s', out_signature='')
     def set_wallpaper(self, wallpaper_file):
-        global desktop
         desktop.update_wallpaper(wallpaper_file)
         write_config(wallpaper_file)
 
 
 def read_config():
-    global desktop
     if not os.path.exists(CONFIG_DIR):
         os.makedirs(CONFIG_DIR)
     if os.path.exists(CONFIG_FILE):
